@@ -17,8 +17,11 @@
     <div class="container-fluid">
       <a href="javascript:void(0)" onclick="download_image()">download image</a>
       <br>
-    <img src="iis/iisstart.png" id="google" />
-    <img src="iis/iisstart.png" id="smile" />
+      <a href="javascript:void(0)" onclick="download_image_zip()">download image zip</a>
+      <hr>
+      <br>
+    <img src="../../iis/iisstart.png" id="google" />
+    <img src="../../iis/iisstart.png" id="smile" />
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -44,6 +47,22 @@
         }
 
         function download_image() {
+          console.log( getBase64Image(document.getElementById("google")) );
+          console.log( getBase64Image(document.getElementById("smile")) ); 
+
+          images = document.querySelectorAll("img");
+          for (i of images) {
+              var a = document.createElement('a');
+              a.href = i.src;
+              console.log(i);
+              a.download = i.src;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+          }        
+        }
+
+        function download_image_zip() {
           var img1 = getBase64Image(document.getElementById("google"));
           var img2 = getBase64Image(document.getElementById("smile"));
           
